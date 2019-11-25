@@ -120,9 +120,7 @@
     }
 }
 
-- (nullable NSDate *)fs_firstDayOfMonth:(NSDate *)month{
-    if (!month) return nil;
-    
+- (nullable NSDate *)fs_firstDayOfMonth:(nonnull NSDate *)month{
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
         for (FSMerchandisingCalendarMonth *merchandisingMonth in merchandisingYear.months) {
             if ([merchandisingMonth.startDay compare:month] != NSOrderedDescending && [merchandisingMonth.endDay compare:month] != NSOrderedAscending) {
@@ -137,7 +135,7 @@
     return [self.calendar dateFromComponents:components];
 }
 
-- (nullable NSDate *)fs_firstDayOfMonthByAddingMonths:(NSInteger)months toDate:(NSDate *)startDate{
+- (nullable NSDate *)fs_firstDayOfMonthByAddingMonths:(NSInteger)months toDate:(nonnull NSDate *)startDate{
     NSDate *gregorianDay = [self.calendar dateByAddingUnit:NSCalendarUnitMonth value:months toDate:startDate options:0];
     
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
@@ -169,9 +167,7 @@
     return [self fs_firstDayOfMonth: gregorianDay];
 }
 
-- (nullable NSDate *)fs_lastDayOfMonth:(NSDate *)month{
-    if (!month) return nil;
-    
+- (nullable NSDate *)fs_lastDayOfMonth:(nonnull NSDate *)month{
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
         for (FSMerchandisingCalendarMonth *merchandisingMonth in merchandisingYear.months) {
             if ([merchandisingMonth.startDay compare:month] != NSOrderedDescending && [merchandisingMonth.endDay compare:month] != NSOrderedAscending) {
@@ -187,9 +183,7 @@
     return [self.calendar dateFromComponents:components];
 }
 
-- (nullable NSDate *)fs_firstDayOfWeek:(NSDate *)week{
-    if (!week) return nil;
-    
+- (nullable NSDate *)fs_firstDayOfWeek:(nonnull NSDate *)week{
     NSDateComponents *weekdayComponents = [self.calendar components:NSCalendarUnitWeekday fromDate:week];
     NSDateComponents *components = self.fs_privateComponents;
     components.day = - (weekdayComponents.weekday - self.calendar.firstWeekday);
@@ -200,9 +194,7 @@
     return firstDayOfWeek;
 }
 
-- (nullable NSDate *)fs_lastDayOfWeek:(NSDate *)week{
-    if (!week) return nil;
-    
+- (nullable NSDate *)fs_lastDayOfWeek:(nonnull NSDate *)week{
     NSDateComponents *weekdayComponents = [self.calendar components:NSCalendarUnitWeekday fromDate:week];
     NSDateComponents *components = self.fs_privateComponents;
     components.day = - (weekdayComponents.weekday - self.calendar.firstWeekday);
@@ -213,9 +205,7 @@
     return lastDayOfWeek;
 }
 
-- (nullable NSDate *)fs_middleDayOfWeek:(NSDate *)week{
-    if (!week) return nil;
-    
+- (nullable NSDate *)fs_middleDayOfWeek:(nonnull NSDate *)week{
     NSDateComponents *weekdayComponents = [self.calendar components:NSCalendarUnitWeekday fromDate:week];
     NSDateComponents *componentsToSubtract = self.fs_privateComponents;
     componentsToSubtract.day = - (weekdayComponents.weekday - self.calendar.firstWeekday) + 3;
@@ -226,9 +216,7 @@
     return middleDayOfWeek;
 }
 
-- (NSInteger)fs_numberOfDaysInMonth:(NSDate *)month{
-    if (!month) return 0;
-    
+- (NSInteger)fs_numberOfDaysInMonth:(nonnull NSDate *)month{
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
         for (FSMerchandisingCalendarMonth *merchandisingMonth in merchandisingYear.months) {
             if ([merchandisingMonth.startDay compare:month] != NSOrderedDescending && [merchandisingMonth.endDay compare:month] != NSOrderedAscending) {
@@ -244,7 +232,7 @@
     return days.length;
 }
 
-- (nullable NSString *)fs_weekNumberForDate:(NSDate *)date{
+- (nullable NSString *)fs_weekNumberForDate:(nonnull NSDate *)date{
     
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
         for (FSMerchandisingCalendarMonth *merchandisingMonth in merchandisingYear.months) {
@@ -261,7 +249,7 @@
     return [self.weekDateFormatter stringFromDate:date];
 }
 
-- (NSInteger)fs_monthForDate:(NSDate *)date{
+- (NSInteger)fs_monthForDate:(nonnull NSDate *)date{
     
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
         for (FSMerchandisingCalendarMonth *merchandisingMonth in merchandisingYear.months) {
@@ -274,7 +262,7 @@
     return [self.calendar component:NSCalendarUnitMonth fromDate:date];
 }
 
-- (nullable NSString *)fs_monthNameForDate:(NSDate *)date{
+- (nullable NSString *)fs_monthNameForDate:(nonnull NSDate *)date{
     
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
         for (FSMerchandisingCalendarMonth *merchandisingMonth in merchandisingYear.months) {
@@ -293,7 +281,7 @@
     return [self.monthDateFormatter stringFromDate:date];
 }
 
-- (nullable NSString *)fs_yearForDate:(NSDate *)date{
+- (nullable NSString *)fs_yearForDate:(nonnull NSDate *)date{
     
     for (FSMerchandisingCalendarYear *merchandisingYear in self.merchandisingYears) {
         for (FSMerchandisingCalendarMonth *merchandisingMonth in merchandisingYear.months) {
